@@ -4,13 +4,18 @@ import Login from "@/views/Login";
 import SystemAdmin from '@/views/SystemAdmin'
 import DormitoryAdminManager from '@/views/DormitoryAdminManager'
 import DormitoryAdminAdd from "@/views/DormitoryAdminAdd";
-import dormitoryAdminUpdate from "@/views/DormitoryAdminUpdate"
+import DormitoryAdminUpdate from "@/views/DormitoryAdminUpdate";
 import StudentAdd from "@/views/StudentAdd"
 import StudentManager from "@/views/StudentManager";
 import StudentUpdate from "@/views/StudentUpdate";
 import BuildingAdd from "@/views/BuildingAdd";
 import BuildingManager from "@/views/BuildingManager";
 import BuildingUpdate from "@/views/BuildingUpdate";
+import DormitoryAdd from "@/views/DormitoryAdd";
+import DormitoryManager from "@/views/DormitoryManager";
+import DormitoryUpdate from "@/views/DormitoryUpdate";
+
+
 
 Vue.use(VueRouter);
 
@@ -43,7 +48,7 @@ const routes = [
       {
         path: "/dormitoryAdminUpdate",
         name: "修改宿管",
-        component: dormitoryAdminUpdate,
+        component: DormitoryAdminUpdate,
       },
       {
         path: "/studentAdd",
@@ -74,6 +79,21 @@ const routes = [
         path: "/buildingUpdate",
         name: '更新宿舍楼',
         component: BuildingUpdate,
+      },
+      {
+        path: "/dormitoryAdd",
+        name: '添加宿舍',
+        component: DormitoryAdd,
+      },
+      {
+        path: "/dormitoryManager",
+        name: '宿舍管理',
+        component: DormitoryManager,
+      },
+      {
+        path: "/dormitoryUpdate",
+        name: '更新宿舍',
+        component: DormitoryUpdate,
       },
     ],
   },

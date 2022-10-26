@@ -1,11 +1,8 @@
 <template>
     <div style="margin-top: 60px;margin-left:330px;width: 300px;height: 500px;border: 0px solid red;" >
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-            <el-form-item label="ID">
-                <el-input v-model="ruleForm.id"></el-input>
-            </el-form-item>
-            <el-form-item label="宿舍楼" prop="buildingId">
-                <el-select v-model="ruleForm.buildingId" placeholder="请选择宿舍楼">
+            <el-form-item label="楼宇" prop="buildingId">
+                <el-select v-model="ruleForm.buildingId" placeholder="请选择楼宇">
                     <el-option v-for="item in buildingList" :label="item.name" :value="item.id"></el-option>
                 </el-select>
             </el-form-item>
@@ -17,13 +14,14 @@
                     <el-option label="4人间" value="4"></el-option>
                     <el-option label="6人间" value="6"></el-option>
                     <el-option label="8人间" value="8"></el-option>
+                    <el-option label="10人间" value="10"></el-option>
                 </el-select>
             </el-form-item>
             <el-form-item label="联系电话" prop="telephone">
                 <el-input v-model="ruleForm.telephone"></el-input>
             </el-form-item>
             <el-form-item>
-                <el-button type="primary" @click="submitForm('ruleForm')">立即修改</el-button>
+                <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
                 <el-button @click="resetForm('ruleForm')">重置</el-button>
             </el-form-item>
         </el-form>
@@ -36,14 +34,13 @@
         data() {
             return {
                 category:null,
-                buildingList: '',
                 ruleForm: {
-                    id: '',
                     buildingId: '',
                     name: '',
                     type: '',
                     telephone: ''
                 },
+                buildingList: '',
                 rules: {
                     buildingId: [
                         { required: true, message: '请选择楼宇', trigger: 'change' }
@@ -65,9 +62,9 @@
                 const _this = this
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        axios.put('http://localhost:8081/dormitory/update',_this.ruleForm).then(function (resp) {
-                            if(resp.data.code == 0){
-                                _this.$alert(_this.ruleForm.name+'修改成功', '', {
+                        axios.post('http://localhost:8081/dormitory/save',_this.ruleForm).then(function (resp) {
+                            if(resp.data.code === 0){
+                                _this.$alert(_this.ruleForm.name+'添加成功', '', {
                                     confirmButtonText: '确定',
                                     callback: action => {
                                         _this.$router.push('/dormitoryManager')
@@ -84,11 +81,8 @@
         },
         created() {
             const _this = this
-            axios.get('http://localhost:8081/dormitory/findById/'+_this.$route.query.id).then(function (resp) {
-                _this.ruleForm = resp.data.data
-            })
-            axios.get('http://localhost:8081/building/list').then((resp) => {
-                this.buildingList = resp.data.data
+            axios.get('http://localhost:8081/building/list').then(function (resp) {
+                _this.buildingList = resp.data.data
             })
         }
     }
