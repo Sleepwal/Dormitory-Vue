@@ -120,15 +120,15 @@ export default {
               })
               .then(function (resp) {
                 _this.logining = false;
-                if (resp.data.code == -1) {
+                if (resp.data.code === -1) {
                   _this.$alert("用户不存在!", "提示", {
                     confirmButtonText: "确定",
                   });
-                } else if (resp.data.code == -2) {
+                } else if (resp.data.code === -2) {
                   _this.$alert("密码错误!", "提示", {
                     confirmButtonText: "确定",
                   });
-                } else if (resp.data.code == 0) {
+                } else if (resp.data.code === 0) {
                    //跳转到SystemAdmin
                     //展示当前用户
                     localStorage.setItem('dormitoryAdmin', JSON.stringify(resp.data.data))

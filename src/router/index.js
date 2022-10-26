@@ -14,20 +14,32 @@ import BuildingUpdate from "@/views/BuildingUpdate";
 import DormitoryAdd from "@/views/DormitoryAdd";
 import DormitoryManager from "@/views/DormitoryManager";
 import DormitoryUpdate from "@/views/DormitoryUpdate";
-
-
+import MoveoutRegister from "@/views/MoveoutRegister";
+import MoveRecord from "@/views/MoveRecord";
+import AbsentRecord from "@/views/AbsentRecord";
+import AbsentRegister from "@/views/AbsentRegister";
+import DormitoryAdmin from "@/views/DormitoryAdmin";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/",
-    component: Login,
-  },
-  {
-    path: "/login",
-    name: "登录",
-    component: Login,
+    path: '/dormitoryAdmin',
+    name: '宿舍管理员',
+    component: DormitoryAdmin,
+    redirect: '/dormitoryAdmin/absentRegister',
+    children:[
+      {
+        path: 'absentRecord',
+        name: '缺寝记录',
+        component: AbsentRecord
+      },
+      {
+        path: 'absentRegister',
+        name: '缺寝登记',
+        component: AbsentRegister
+      }
+    ]
   },
   {
     path: "/systemAdmin",
@@ -95,8 +107,33 @@ const routes = [
         name: '更新宿舍',
         component: DormitoryUpdate,
       },
+      {
+        path: "/moveoutRegister",
+        name: '迁出登记',
+        component: MoveoutRegister,
+      },
+      {
+        path: "/moveRecord",
+        name: '迁出记录',
+        component: MoveRecord,
+      },
+      {
+        path: '/absentRecord',
+        name: '缺寝记录',
+        component: AbsentRecord
+      }
     ],
   },
+  {
+    path: '/login',
+    name: '登录',
+    component: Login
+  },
+  {
+    path: '/',
+    name: '',
+    component: Login
+  }
 ];
 
 const router = new VueRouter({

@@ -107,7 +107,7 @@
             <span slot="title">学生迁出登记</span>
           </el-menu-item>
 
-          <el-menu-item index="/moveoutRecord">
+          <el-menu-item index="/moveRecord">
             <i class="el-icon-s-order"></i>
             <span slot="title">学生迁出记录</span>
           </el-menu-item>
