@@ -49,6 +49,7 @@
           <el-button @click="resetForm('userForm')">重置</el-button>
         </el-form-item>
       </el-form>
+      <a :href="regist">没有账号？立即注册</a>
     </fieldset>
   </div>
 </template>
@@ -80,6 +81,7 @@ export default {
     };
     return {
       logining: false,
+      regist: 'http://localhost:8080/register',
 
       userForm: {
         username: "",

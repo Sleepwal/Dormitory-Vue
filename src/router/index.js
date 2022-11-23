@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from "@/views/Login";
+import Register from "@/views/Register";
 import SystemAdmin from '@/views/SystemAdmin'
 import DormitoryAdminManager from '@/views/DormitoryAdminManager'
 import DormitoryAdminAdd from "@/views/DormitoryAdminAdd";
@@ -130,9 +131,14 @@ const routes = [
     component: Login
   },
   {
+    path: '/register',
+    name: '登录',
+    component: Register
+  },
+  {
     path: '/',
     name: '',
-    component: Login
+    component: Register
   }
 ];
 
